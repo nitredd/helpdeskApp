@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Issues</h1>
+
+<div id="issues">
+  <% @no_items = true %>
+  <% @issues.each do |issue| %>
+  <% @no_items = false %>
+  <div class="each-item">
+    <%= render issue %>
+    <p>
+      <%= link_to "Show this issue", issue %>
+    </p>
+  </div>
+  <% end %>
+</div>
+
+<% if !@no_items %>
+<%= link_to 'View More', issues_path(offset: @offset + @pagesize), :data => {turbolinks: false}  %>
+<div>&nbsp;</div>
+<% end %>
+
+<%= link_to "New issue", new_issue_path, class: 'btn btn-primary'  %>
