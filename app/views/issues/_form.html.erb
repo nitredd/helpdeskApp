@@ -28,7 +28,12 @@
 
   <div>
     <%= form.label :reporter, style: "display: block" %>
-    <%= form.text_field :reporter %>
+    <%= form.select :reporter, User.all.to_a.map {|x| [x.email, x.email] } %>
+  </div>
+
+  <div>
+    <%= form.label :assigned_to, style: "display: block" %>
+    <%= form.select :assigned_to, User.all.to_a.map {|x| [x.email, x.email] } %>
   </div>
 
   <div>

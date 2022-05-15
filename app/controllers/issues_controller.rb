@@ -7,9 +7,15 @@ class IssuesController < ApplicationController
     @offset = (params.key? 'offset') ? params['offset'].to_i : 0
     @pagesize = 5
     @limit = @pagesize
-    #@count = -1
 
-    @issues = Issue.offset(@offset).limit(@limit)
+    @issues = Issue.offset(@offset).limit(@limit+1)
+    @issues = @issues.to_a
+
+    @has_more = false
+    if @issues.length > @limit
+      @issues.pop
+      @has_more = true
+    end
   end
 
   # GET /issues/1 or /issues/1.json
@@ -71,6 +77,6 @@ class IssuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def issue_params
-      params.require(:issue).permit(:summary, :body, :status, :reporter)
+      params.require(:issue).permit(:summary, :body, :status, :reporter, :assigned_to)
     end
 end

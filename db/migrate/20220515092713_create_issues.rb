@@ -5,6 +5,7 @@ class CreateIssues < ActiveRecord::Migration[7.0]
       t.text :body
       t.string :status
       t.string :reporter
+      t.string :assigned_to
 
       t.timestamps
     end

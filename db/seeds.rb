@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+User.new(email: 'nospam@nospam.org', password: 'nospam').save
+User.new(email: 'second@nospam.org', password: 'nospam').save
 20.times do |x|
-  Issue.create(summary: "Summ #{x}", body: "Body #{x}", status: "New", reporter: 'nospam@nospam.org')
+  Issue.create(summary: "Summ #{x}", body: "Body #{x}", status: "New", reporter: 'nospam@nospam.org', assigned_to: 'nospam@nospam.org')
 end

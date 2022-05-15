@@ -15,9 +15,18 @@
   <% end %>
 </div>
 
-<% if !@no_items %>
-<%= link_to 'View More', issues_path(offset: @offset + @pagesize), :data => {turbolinks: false}  %>
-<div>&nbsp;</div>
+
+<% if !@no_items && @offset > 0 %>
+<%= link_to 'Prev Page', issues_path(offset: @offset - @pagesize), :data => {turbolinks: false}  %>
 <% end %>
 
+<% if !@no_items && @offset > 0 && @has_more %>
+&nbsp; | &nbsp;
+<% end %>
+
+<% if !@no_items && @has_more %>
+<%= link_to 'Next Page', issues_path(offset: @offset + @pagesize), :data => {turbolinks: false}  %>
+<% end %>
+
+<div>&nbsp;</div>
 <%= link_to "New issue", new_issue_path, class: 'btn btn-primary'  %>

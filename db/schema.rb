@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_15_092713) do
     t.text "body"
     t.string "status"
     t.string "reporter"
+    t.string "assigned_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
