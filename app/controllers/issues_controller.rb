@@ -8,7 +8,8 @@ class IssuesController < ApplicationController
     @pagesize = 5
     @limit = @pagesize
 
-    @issues = Issue.offset(@offset).limit(@limit+1)
+    @issues = Issue.where("status <> 'Closed'")
+    @issues = @issues.offset(@offset).limit(@limit+1)
     @issues = @issues.to_a
 
     @has_more = false
@@ -16,6 +17,24 @@ class IssuesController < ApplicationController
       @issues.pop
       @has_more = true
     end
+  end
+
+  def closed
+    @offset = (params.key? 'offset') ? params['offset'].to_i : 0
+    @pagesize = 5
+    @limit = @pagesize
+
+    @issues = Issue.where("status = 'Closed'")
+    @issues = @issues.offset(@offset).limit(@limit+1)
+    @issues = @issues.to_a
+
+    @has_more = false
+    if @issues.length > @limit
+      @issues.pop
+      @has_more = true
+    end
+
+    render 'index'
   end
 
   # GET /issues/1 or /issues/1.json

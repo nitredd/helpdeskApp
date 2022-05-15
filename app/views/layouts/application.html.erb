@@ -16,6 +16,14 @@
       border-bottom: solid 1px gray;
       margin-bottom: 15px;
     }
+    .each-item:first-child {
+      border-top: solid 1px gray;
+      margin-top: 15px;
+      padding-top: 15px;
+    }
+    div#issues {
+      
+    }
     </style>
   </head>
 
@@ -36,7 +44,10 @@
 	-->
         <li class="nav-item">
           <!--<a class="nav-link" href="#">Link</a>-->
-	  <%= link_to 'Issues', issues_path, class: 'nav-link' %>
+	  <%= link_to 'Open Issues', issues_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+	  <%= link_to 'Closed Issues', closed_issues_path, class: 'nav-link' %>
         </li>
 	<% if signed_in? %>
 	  <li class="nav-item">
